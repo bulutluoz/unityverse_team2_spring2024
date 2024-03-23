@@ -49,6 +49,22 @@ public class C01_WebdriverKullanimi {
         Thread.sleep(3000);
         aramaKutusu.submit();
 
+        // arama sonucunda bulunan urun sayisini gosteren sonuc yazisini yazdirin
+
+        WebElement aramaSonucElementi = driver.findElement(By.className("product-count-text"));
+        System.out.println(aramaSonucElementi.getText()); // 4 Products Found
+
+        // arama sonucunda urun bulunabildigini test edin
+
+        String aramaSonucYazisi = aramaSonucElementi.getText(); // 4 Products Found
+        aramaSonucYazisi = aramaSonucYazisi.replaceAll("\\D",""); // 4
+
+        int sonucSayisi = Integer.parseInt(aramaSonucYazisi);
+
+        if (sonucSayisi > 0){
+            System.out.println("Arama sonuc testi PASSED");
+        }else System.out.println("Arama sonuc testi FAILED");
+
 
         Thread.sleep(3000);
         driver.quit();
