@@ -1,4 +1,4 @@
-package tests.webelements_locators;
+package tests.day02_webelements_locators;
 
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;

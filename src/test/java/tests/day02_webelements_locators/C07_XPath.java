@@ -1,4 +1,4 @@
-package tests.webelements_locators;
+package tests.day02_webelements_locators;
 
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
@@ -14,6 +14,7 @@ public class C07_XPath {
         WebDriver driver = new ChromeDriver();
         driver.manage().window().maximize();
         driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(10));
+
         //2-  https://www.testotomasyonu.com/ adresine gidin
         driver.get("https://www.testotomasyonu.com/");
         //3-  Browseri tam sayfa yapin
