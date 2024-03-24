@@ -55,13 +55,7 @@ public class C07_Assertion {
 
         List<WebElement> bulunanUrunElementleriList = driver.findElements(By.xpath("//*[@class='product-box my-2  py-1']"));
 
-        if (bulunanUrunElementleriList.size() > 0){
-            System.out.println("Urun arama testi PASSED");
-        }else {
-            System.out.println("Urun arama testi FAILED");
-            throw new AssertionFailedError();
-        }
-
+        Assert.assertTrue(bulunanUrunElementleriList.size() > 0);
     }
 
     @Test
@@ -76,13 +70,7 @@ public class C07_Assertion {
         String expectedUrunIcerik = "phone";
         String aciklamaKucukHarf = urunAciklamaElementi.getText().toLowerCase();
 
-        if (aciklamaKucukHarf.contains(expectedUrunIcerik)){
-            System.out.println("Urun aciklama testi PASSED");
-        }else {
-            System.out.println("Urun aciklama testi FAILED");
-            throw new AssertionFailedError();
-        }
-
+        Assert.assertTrue("urun aciklamasinda phone kelimesi gecmiyor",aciklamaKucukHarf.contains(expectedUrunIcerik));
     }
 
 }
