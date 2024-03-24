@@ -1,6 +1,10 @@
 package tests.day03_JunitFramework;
 
-import org.junit.*;
+import junit.framework.AssertionFailedError;
+import org.junit.AfterClass;
+import org.junit.Assert;
+import org.junit.BeforeClass;
+import org.junit.Test;
 import org.openqa.selenium.By;
 import org.openqa.selenium.Keys;
 import org.openqa.selenium.WebDriver;
@@ -10,18 +14,7 @@ import org.openqa.selenium.chrome.ChromeDriver;
 import java.time.Duration;
 import java.util.List;
 
-public class C05_BeforeClass_AfterClass {
-
-    // farkli 3 test method'u kullanarak, asagidaki testleri yapin
-
-    // 1- test otomasyonu anasayfaya gidip
-    //    testotomasyonu sayfasina gidildigini test edin
-
-    // 2- arama kutusuna phone yazip aratin
-    //    arama sonucunda urun bulunabildigini test edin
-
-    // 3- ilk urune tiklayin
-    //    urun aciklama bolumunde case sensitive olmadan phone kelimesi gectigini test edin
+public class C07_Assertion {
 
     static WebDriver driver;
     @BeforeClass
@@ -46,9 +39,9 @@ public class C05_BeforeClass_AfterClass {
         String expectedUrlIcerik = "testotomasyonu";
         String actualUrl = driver.getCurrentUrl();
 
-        if (actualUrl.contains(expectedUrlIcerik)){
-            System.out.println("Anasayafa testi PASSED");
-        }else System.out.println("Anasayafa testi FAILED");
+
+        Assert.assertTrue("testotomasyonu anasayfaya gidilemedi",actualUrl.contains(expectedUrlIcerik));
+
     }
 
     @Test
@@ -64,7 +57,10 @@ public class C05_BeforeClass_AfterClass {
 
         if (bulunanUrunElementleriList.size() > 0){
             System.out.println("Urun arama testi PASSED");
-        }else System.out.println("Urun arama testi FAILED");
+        }else {
+            System.out.println("Urun arama testi FAILED");
+            throw new AssertionFailedError();
+        }
 
     }
 
@@ -82,14 +78,14 @@ public class C05_BeforeClass_AfterClass {
 
         if (aciklamaKucukHarf.contains(expectedUrunIcerik)){
             System.out.println("Urun aciklama testi PASSED");
-        }else System.out.println("Urun aciklama testi FAILED");
+        }else {
+            System.out.println("Urun aciklama testi FAILED");
+            throw new AssertionFailedError();
+        }
 
     }
 
 }
-
-
-
 
 
 

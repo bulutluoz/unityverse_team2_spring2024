@@ -1,6 +1,9 @@
 package tests.day03_JunitFramework;
 
-import org.junit.*;
+import junit.framework.AssertionFailedError;
+import org.junit.AfterClass;
+import org.junit.BeforeClass;
+import org.junit.Test;
 import org.openqa.selenium.By;
 import org.openqa.selenium.Keys;
 import org.openqa.selenium.WebDriver;
@@ -10,18 +13,22 @@ import org.openqa.selenium.chrome.ChromeDriver;
 import java.time.Duration;
 import java.util.List;
 
-public class C05_BeforeClass_AfterClass {
+public class C06_TestSonucuRaporlama {
 
-    // farkli 3 test method'u kullanarak, asagidaki testleri yapin
+    /*
+        JUnit testlerin PASSED veya FAILED olmasina
+        kodlarin problemsiz calisp calismadigina bakarak karar verir
 
-    // 1- test otomasyonu anasayfaya gidip
-    //    testotomasyonu sayfasina gidildigini test edin
+        Eger testler hic sorun yasanmadan
+        sonuna kadar calisip
+        Process finished with exit code 0 diyerek calisma biterse
+        JUnit testleri PASSED olarak algilar ve raporlar
 
-    // 2- arama kutusuna phone yazip aratin
-    //    arama sonucunda urun bulunabildigini test edin
+        Diger bir deyisle
+        JUnit'de bir testin FAILED olarak algilanmasi icin
+        kodlar calisirken exception olusmalidir
 
-    // 3- ilk urune tiklayin
-    //    urun aciklama bolumunde case sensitive olmadan phone kelimesi gectigini test edin
+     */
 
     static WebDriver driver;
     @BeforeClass
@@ -48,7 +55,10 @@ public class C05_BeforeClass_AfterClass {
 
         if (actualUrl.contains(expectedUrlIcerik)){
             System.out.println("Anasayafa testi PASSED");
-        }else System.out.println("Anasayafa testi FAILED");
+        }else {
+            System.out.println("Anasayafa testi FAILED");
+            throw new AssertionFailedError();
+        }
     }
 
     @Test
@@ -64,7 +74,10 @@ public class C05_BeforeClass_AfterClass {
 
         if (bulunanUrunElementleriList.size() > 0){
             System.out.println("Urun arama testi PASSED");
-        }else System.out.println("Urun arama testi FAILED");
+        }else {
+            System.out.println("Urun arama testi FAILED");
+            throw new AssertionFailedError();
+        }
 
     }
 
@@ -82,29 +95,11 @@ public class C05_BeforeClass_AfterClass {
 
         if (aciklamaKucukHarf.contains(expectedUrunIcerik)){
             System.out.println("Urun aciklama testi PASSED");
-        }else System.out.println("Urun aciklama testi FAILED");
+        }else {
+            System.out.println("Urun aciklama testi FAILED");
+            throw new AssertionFailedError();
+        }
 
     }
 
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
