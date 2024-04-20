@@ -72,6 +72,21 @@ public class C01_WebTables extends TestBase {
         //    Test sayfasindan satir ve sutun verildiginde datayi yazdirsin
 
         ReusableMethods.bekle(3);
+        printData(1,2); // Electronics
+        printData(2,3); // $399.00
 
+    }
+
+
+    public void printData(int satir , int sutun){
+
+        //         ((//div[@role='trow'])[  2   ] / *[@role='tdata'])[   2   ]
+
+        String dinamikXpath = "((//div[@role='trow'])[" + satir +
+                              "] / *[@role='tdata'])[" + sutun + "]";
+
+        WebElement istenenDataElementi = driver.findElement(By.xpath(dinamikXpath));
+
+        System.out.println(satir +".satir, " + sutun+".sutundaki data : " + istenenDataElementi.getText());
     }
 }
